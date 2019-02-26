@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1547584611 source:/home/jack_bagunca/Documents/Universidade/Algoritmos/Cormen cpp/Inersions/main.cpp
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<time.h>
+
