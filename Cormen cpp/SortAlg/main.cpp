@@ -63,6 +63,7 @@ int main()
 //        break;
 //      case(8):
 //        cout << "Metodo Escolhido: HeapSort." << endl << endl;
+//        VecOp::heapSort(vetor);
 //        break;
 //      default:
 //        cout << "Escolha inválida, favor escolher um número válido." << endl << endl;
@@ -74,10 +75,6 @@ int main()
 //  VecOp::imprime(vetor);
 //}
 
-///Teste Heap
-  VecOp::heapSort(vetor);
-  VecOp::imprime(vetor);
-
 /////TESTE DAS FUNÇOES MAXIMUM SUBARRAY
 //{
 //  enum mapSubarrayObj {SOMA, INICIO, ULTIMO};
@@ -88,6 +85,14 @@ int main()
 //  VecOp::maximumSubarrayLT(vetor);
 //}
 
+  Heap* heap = new Heap(vetor);
+  heap->buildMaxHeap();
+  heap->imprime();
+  cout << "Primeiro elemento: " << heap->firstElement() << endl;
+  cout << "Extraindo primeiro elemento: " << heap->extractFirst() << endl;
+  cout << "Extraindo segundo elemento: " << heap->extractFirst() << endl;
+  cout << "Extraindo terceiro elemento: " << heap->extractFirst() << endl;
+  cout << "Extraindo quarto elemento: " << heap->extractFirst() << endl;
 
 
   return 0;

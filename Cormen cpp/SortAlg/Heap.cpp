@@ -10,6 +10,7 @@ Heap::Heap(vector<int> vetor)
   //ctor
   this->heap = vetor;
   this->tamHeap = vetor.size();
+  this->status = 0;
 }
 
 Heap::~Heap()
@@ -69,6 +70,28 @@ void Heap::buildMaxHeap()
 {
   for(int i = tamHeap / 2 - 1; i >= 0; i--)
     maxHeapify(i);
+  this->status = 1;
+}
+
+int Heap::firstElement()
+{
+  if(status != 0)
+    return heap[0];
+  cout << "Nao existe heap, impossível mandar o primeiro elemento." << endl;
+}
+
+int Heap::extractFirst()
+{
+  if(tamHeap < 1)
+  {
+    cout << "Tamanho da heap invalido." << endl;
+    return -1;
+  }
+  int first = heap[0];
+  heap[0] = heap[tamHeap - 1];
+  tamHeap--;
+  maxHeapify(0);
+  return first;
 }
 
 vector<int> Heap::getHeap()           { return heap; }

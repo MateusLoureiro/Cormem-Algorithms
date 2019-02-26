@@ -12,6 +12,7 @@ class Heap
   private:
     vector<int> heap;
     int tamHeap;
+    int status; //0 == NOHEAP, 1 == MAXHEAP, 2 == MINHEAP
 
   public:
     Heap(vector<int> vetor);
@@ -24,6 +25,8 @@ class Heap
     int  esquerdo(int num);
     void maxHeapify(int num);
     void buildMaxHeap();
+    int firstElement();
+    int extractFirst();
 
     ///GETTERS AND SETTERS
     vector<int> getHeap();

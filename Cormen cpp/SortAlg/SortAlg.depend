@@ -35,3 +35,30 @@
 	<vector>
 	"SortVec.h"
 
+1551190402 source:/home/CIN/mll5/Documents/Cormem Algorithm/Cormem-Algorithms/Cormen cpp/SortAlg/Heap.cpp
+	"Heap.h"
+	<iostream>
+	<vector>
+	"SortVec.h"
+
+1551190041 /home/CIN/mll5/Documents/Cormem Algorithm/Cormem-Algorithms/Cormen cpp/SortAlg/Heap.h
+	<vector>
+	"SortVec.h"
+
+1551187299 /home/CIN/mll5/Documents/Cormem Algorithm/Cormem-Algorithms/Cormen cpp/SortAlg/SortVec.h
+	<vector>
+
+1551189929 source:/home/CIN/mll5/Documents/Cormem Algorithm/Cormem-Algorithms/Cormen cpp/SortAlg/main.cpp
+	<iostream>
+	<vector>
+	"SortVec.h"
+	"Heap.h"
+
+1551187299 source:/home/CIN/mll5/Documents/Cormem Algorithm/Cormem-Algorithms/Cormen cpp/SortAlg/SortVec.cpp
+	"SortVec.h"
+	"Heap.h"
+	<stdlib.h>
+	<time.h>
+	<iostream>
+	<limits.h>
+
