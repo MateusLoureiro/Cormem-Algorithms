@@ -86,13 +86,17 @@ int main()
 //}
 
   Heap* heap = new Heap(vetor);
-  heap->buildMaxHeap();
+  heap->buildMinHeap();
+  heap->imprime();
+  heap->decreaseKey(9, 0);
+//  heap->minHeapInsert(1000);
   heap->imprime();
   cout << "Primeiro elemento: " << heap->firstElement() << endl;
   cout << "Extraindo primeiro elemento: " << heap->extractFirst() << endl;
   cout << "Extraindo segundo elemento: " << heap->extractFirst() << endl;
   cout << "Extraindo terceiro elemento: " << heap->extractFirst() << endl;
   cout << "Extraindo quarto elemento: " << heap->extractFirst() << endl;
+  heap->imprime();
 
 
   return 0;

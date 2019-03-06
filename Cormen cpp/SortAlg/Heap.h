@@ -24,9 +24,15 @@ class Heap
     int  direito (int num);
     int  esquerdo(int num);
     void maxHeapify(int num);
+    void minHeapify(int num);
     void buildMaxHeap();
-    int firstElement();
-    int extractFirst();
+    void buildMinHeap();
+    int  firstElement();
+    int  extractFirst();
+    void increaseKey(int index, int newKey);
+    void decreaseKey(int index, int newKey);
+    void maxHeapInsert(int key);
+    void minHeapInsert(int key);
 
     ///GETTERS AND SETTERS
     vector<int> getHeap();
@@ -34,7 +40,6 @@ class Heap
     int getTamHeap();
     void setTamHeap(int num);
 
-  protected:
 };
 
 #endif // HEAP_H

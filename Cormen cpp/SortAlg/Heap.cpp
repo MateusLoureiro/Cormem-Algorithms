@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "SortVec.h"
+#include <climits>
 
 using namespace std;
 
@@ -21,11 +22,11 @@ Heap::~Heap()
 void Heap::imprime()
 {
   cout << "[";
-  for(int i = 0; i < this->heap.size() - 1; i++)
+  for(int i = 0; i < this->tamHeap - 1; i++)
   {
     cout << this->heap[i] << ", ";
   }
-  cout << this->heap[this->heap.size() - 1] << "]" << endl;
+  cout << this->heap[this->tamHeap - 1] << "]" << endl;
   cout << "Tamanho = " << this->tamHeap << endl;;
 }
 
@@ -66,11 +67,35 @@ void Heap::maxHeapify(int num)
   }
 }
 
+void Heap::minHeapify(int num)
+{
+  int r = this->direito(num);
+  int l = this->esquerdo(num);
+  int smallest = num;
+
+  if(r < tamHeap && heap[r] < heap[smallest])
+    smallest = r;
+  if(l < tamHeap && heap[l] < heap[smallest])
+    smallest = l;
+  if(smallest != num)
+  {
+    VecOp::troca(heap, smallest, num);
+    minHeapify(smallest);
+  }
+}
+
 void Heap::buildMaxHeap()
 {
   for(int i = tamHeap / 2 - 1; i >= 0; i--)
     maxHeapify(i);
   this->status = 1;
+}
+
+void Heap::buildMinHeap()
+{
+  for(int i = tamHeap / 2 - 1; i >= 0; i--)
+    minHeapify(i);
+  this->status = 2;
 }
 
 int Heap::firstElement()
@@ -90,8 +115,55 @@ int Heap::extractFirst()
   int first = heap[0];
   heap[0] = heap[tamHeap - 1];
   tamHeap--;
-  maxHeapify(0);
+  if(status == 1)
+    maxHeapify(0);
+  if(status == 2)
+    minHeapify(0);
   return first;
+}
+
+void Heap::increaseKey(int i, int key)
+{
+  if(key < heap[i])
+  {
+    cout << "Valor inválido pra key." << endl;
+    return;
+  }
+  heap[i] = key;
+  while(i > 0 && heap[parente(i)] < heap[i])
+  {
+    this->trocaHeap(i, parente(i));
+    i = parente(i);
+  }
+}
+
+void Heap::decreaseKey(int i, int newKey)
+{
+  if(newKey > heap[i])
+  {
+    cout << "Valor inválido pra key." << endl;
+    return;
+  }
+  heap[i] = newKey;
+  while(i > 0 && heap[i] < heap[parente(i)])
+  {
+    trocaHeap(i, parente(i));
+    i = parente(i);
+  }
+}
+
+void Heap::maxHeapInsert(int key)
+{
+  heap[tamHeap] = INT_MIN;
+  increaseKey(tamHeap, key);
+  tamHeap++;
+}
+
+void Heap::minHeapInsert(int key)
+{
+  heap[tamHeap] = INT_MAX;
+  decreaseKey(tamHeap, key);
+  tamHeap++;
 }
 
 vector<int> Heap::getHeap()           { return heap; }
