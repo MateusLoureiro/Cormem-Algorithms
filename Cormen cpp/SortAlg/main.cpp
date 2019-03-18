@@ -1,9 +1,4 @@
 /* Library by Mateus Lucena Loureiro
- *
- *  TODO: -implementar matriz (Os 3 algoritmos de multiplicação);
- *        -implementar os 3 algoritmos de maior subarray
- *
- *
  */
 
 #include <iostream>
@@ -17,19 +12,21 @@ int menu();
 
 int main()
 {
-  vector<int> vetor = VecOp::cria(1);
+  vector<int> vetor = VecOp::cria(3);
 
   cout << "Vetor original:" << endl;
   VecOp::imprime(vetor);
   cout << endl;
 
-///TESTE DAS FUNÇOES SORT
+  VecOp::countingSort(vetor, 6);
+
+/////TESTE DAS FUNÇOES SORT
 //{
 //  int metodo = 0;
 //  while(metodo < 1 || metodo > 8)
 //  {
-//    metodo = menu();
-////    metodo = 6;
+////    metodo = menu();
+//    metodo = 8;
 //    switch(metodo){
 //      case(1):
 //        cout << "Metodo Escolhido: BubbleSort." << endl << endl;
@@ -60,8 +57,13 @@ int main()
 //      }
 //      case(7):
 //        cout << "Metodo Escolhido: QuickSort." << endl << endl;
+//        VecOp::quickSort(vetor, 0, 9);
 //        break;
 //      case(8):
+//        cout << "Metodo Escolhido: TailQuickSort." << endl << endl;
+//        VecOp::tailQuickSort(vetor, 0, 9);
+//        break;
+//      case(9):
 //        cout << "Metodo Escolhido: HeapSort." << endl << endl;
 //        VecOp::heapSort(vetor);
 //        break;
@@ -85,18 +87,19 @@ int main()
 //  VecOp::maximumSubarrayLT(vetor);
 //}
 
-  Heap* heap = new Heap(vetor);
-  heap->buildMinHeap();
-  heap->imprime();
-  heap->decreaseKey(9, 0);
-//  heap->minHeapInsert(1000);
-  heap->imprime();
-  cout << "Primeiro elemento: " << heap->firstElement() << endl;
-  cout << "Extraindo primeiro elemento: " << heap->extractFirst() << endl;
-  cout << "Extraindo segundo elemento: " << heap->extractFirst() << endl;
-  cout << "Extraindo terceiro elemento: " << heap->extractFirst() << endl;
-  cout << "Extraindo quarto elemento: " << heap->extractFirst() << endl;
-  heap->imprime();
+///// Testing Priority Queue and MinHeaps
+//  Heap* heap = new Heap(vetor);
+//  heap->buildMinHeap();
+//  heap->imprime();
+//  heap->decreaseKey(9, 0);
+////  heap->minHeapInsert(1000);
+//  heap->imprime();
+//  cout << "Primeiro elemento: " << heap->firstElement() << endl;
+//  cout << "Extraindo primeiro elemento: " << heap->extractFirst() << endl;
+//  cout << "Extraindo segundo elemento: " << heap->extractFirst() << endl;
+//  cout << "Extraindo terceiro elemento: " << heap->extractFirst() << endl;
+//  cout << "Extraindo quarto elemento: " << heap->extractFirst() << endl;
+//  heap->imprime();
 
 
   return 0;
@@ -112,7 +115,8 @@ int menu()
   cout << "5: SelectionSort;" << endl;
   cout << "6: MergeSort (também dá o número de inversões);" << endl;
   cout << "7: QuickSort;" << endl;
-  cout << "8: HeapSort." << endl;
+  cout << "8: TailQuickSort;" << endl;
+  cout << "9: HeapSort." << endl;
   cout << endl << "Escolha: ";
   int escolha;
   cin >> escolha;

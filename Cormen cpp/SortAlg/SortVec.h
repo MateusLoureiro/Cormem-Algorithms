@@ -22,6 +22,10 @@ class VecOp
     static int mergeVectors(vector<int> &vetor, int inicio, int meio, int ultimoIndice);
     static int mergeSort(vector<int> &vetor, int inicio, int ultimoIndice);
     static void heapSort(vector<int> &vetor);
+    static int randomPartition(vector<int> &vetor, int comeco, int fim);
+    static void quickSort(vector<int> &vetor, int comeco, int fim);
+    static void tailQuickSort(vector<int> &vetor, int comeco, int fim);
+    static void countingSort(vector<int> &vetor, int k);
     static void maximumSubarrayBF(vector<int> vetor);
     static void maximumSubarrayDC(vector<int> vetor);
     static void maximumSubarrayLT(vector<int> vetor);

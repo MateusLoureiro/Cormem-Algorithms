@@ -33,6 +33,12 @@ vector<int> VecOp::cria(int modo)
         vetor[i] = rand() % 41 - 20;
       }
       break;
+    case(3):
+      for(int i = 0; i < vetor.size(); i++)
+      {
+        vetor[i] = rand() % 6;
+      }
+      break;
     //Coloca 0 em tudo
     default:
       for(int i = 0; i < vetor.size(); i++)
@@ -296,6 +302,61 @@ void VecOp::heapSort(vector<int> &vetor)
   vetor = heap->getHeap();
 }
 
+int VecOp::randomPartition(vector<int> &vetor, int comeco, int fim) //fim == ultimo elemento
+{
+  srand(time(NULL));
+  int pivo = comeco + rand() % (fim - comeco + 1);
+  troca(vetor, pivo, fim);
+  int i = comeco;
+  for(int j = comeco; j < fim; j++)
+  {
+    if(vetor[j] < vetor[fim])
+    {
+      troca(vetor, j, i);
+      i++;
+    }
+  }
+  troca(vetor, fim, i);
+  return i;
+}
+
+void VecOp::quickSort(vector<int> &vetor, int comeco, int fim)
+{
+  if(comeco < fim)
+  {
+    int p = randomPartition(vetor, comeco, fim);
+    quickSort(vetor, comeco, p - 1);
+    quickSort(vetor, p + 1, fim);
+  }
+}
+
+void VecOp::tailQuickSort(vector<int> &vetor, int comeco, int fim)
+{
+  while(comeco < fim)
+  {
+    int q = randomPartition(vetor, comeco, fim);
+    tailQuickSort(vetor, comeco, q - 1);
+    comeco = q + 1;
+  }
+}
+
+void VecOp::countingSort(vector<int> &vetor, int k)
+{
+  vector<int> ordenado = vetor;
+  vector<int> temp(k);
+  for(int i = 0; i < k; i++)
+    temp[i] = 0;
+  for(int i = 0; i < vetor.size(); i++)
+    temp[vetor[i]] += 1;
+  for(int i = 1; i < k; i++)
+    temp[i] += temp[i - 1];
+  for(int i = vetor.size() - 1; i >= 0; i--)
+  {
+    temp[vetor[i]]--;
+    ordenado[temp[vetor[i]]] = vetor[i];
+  }
+  imprime(ordenado);
+}
 
 void VecOp::maximumSubarrayBF(vector<int> vetor)
 {
