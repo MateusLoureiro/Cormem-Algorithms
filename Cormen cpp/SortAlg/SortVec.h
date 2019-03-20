@@ -25,10 +25,12 @@ class VecOp
     static int randomPartition(vector<int> &vetor, int comeco, int fim);
     static void quickSort(vector<int> &vetor, int comeco, int fim);
     static void tailQuickSort(vector<int> &vetor, int comeco, int fim);
-    static void countingSort(vector<int> &vetor, int k);
+    static void countingSort(vector<int> &vetor, vector<int> resto, int k);
+    static void radixSort(vector<int> &vetor, int offset);
     static void maximumSubarrayBF(vector<int> vetor);
     static void maximumSubarrayDC(vector<int> vetor);
     static void maximumSubarrayLT(vector<int> vetor);
+    static int kthElement(vector<int> vetor, int k);
 };
 
 

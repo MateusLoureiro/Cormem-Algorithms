@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iostream>
 #include <limits.h>
+#include <cmath>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ vector<int> VecOp::cria(int modo)
     case(1):
       for(int i = 0; i < vetor.size(); i++)
       {
-        vetor[i] = rand() % 100;
+        vetor[i] = rand() % 1000;
       }
       break;
     //Numeros aleatorios entre -20 e 20 inclusos
@@ -138,7 +139,6 @@ void VecOp::bubbleSort(vector<int> &vetor)
       }
     }
     totalPassagens++;
-    VecOp::imprime(vetor);
   }
   cout << endl << "BubbleSort finalizou com " << totalPassagens << " passagens." << endl;
 }
@@ -340,22 +340,42 @@ void VecOp::tailQuickSort(vector<int> &vetor, int comeco, int fim)
   }
 }
 
-void VecOp::countingSort(vector<int> &vetor, int k)
+void VecOp::countingSort(vector<int> &vetor, vector<int> resto, int k)
 {
-  vector<int> ordenado = vetor;
   vector<int> temp(k);
+  vector<int> ordenado(vetor.size());
   for(int i = 0; i < k; i++)
     temp[i] = 0;
   for(int i = 0; i < vetor.size(); i++)
-    temp[vetor[i]] += 1;
+    temp[resto[i]] += 1;
   for(int i = 1; i < k; i++)
     temp[i] += temp[i - 1];
   for(int i = vetor.size() - 1; i >= 0; i--)
   {
-    temp[vetor[i]]--;
-    ordenado[temp[vetor[i]]] = vetor[i];
+    temp[resto[i]]--;
+    ordenado[temp[resto[i]]] = vetor[i];
   }
-  imprime(ordenado);
+  vetor = ordenado;
+}
+
+void VecOp::radixSort(vector<int> &vetor, int offset)
+{
+  int hasDigits = 1;
+  vector<int> restosTemp(vetor.size());
+  vector<int> procVec = vetor;
+  int pot = 0;
+  while(hasDigits)
+  {
+    hasDigits = 0;
+    for(int i = 0; i < vetor.size(); i++)
+    {
+      restosTemp[i] = (vetor[i] / ((int)pow(offset, pot))) % offset;
+      if(restosTemp[i] != 0)
+        hasDigits = 1;
+    }
+    pot++;
+    countingSort(vetor, restosTemp, offset);
+  }
 }
 
 void VecOp::maximumSubarrayBF(vector<int> vetor)
@@ -506,3 +526,20 @@ void VecOp::maximumSubarrayLT(vector<int> vetor)
   imprime(vetor, maxLeft, maxRight);
   cout << endl;
 }
+
+int VecOp::kthElement(vector<int> vetor, int k)
+{
+  int maxEl = vetor.size() - 1;
+  int minEl = 0;
+  int t = -1;
+  while(t != k)
+  {
+    t = randomPartition(vetor, minEl, maxEl);
+    if(t < k)
+      minEl = t + 1;
+    if(t > k)
+      maxEl = t - 1;
+  }
+  return vetor[t];
+}
+

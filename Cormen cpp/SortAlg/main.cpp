@@ -12,21 +12,20 @@ int menu();
 
 int main()
 {
-  vector<int> vetor = VecOp::cria(3);
+  vector<int> vetor = VecOp::cria(1);
 
   cout << "Vetor original:" << endl;
   VecOp::imprime(vetor);
   cout << endl;
-
-  VecOp::countingSort(vetor, 6);
+  vector<int> vetor2 = vetor;
 
 /////TESTE DAS FUNÇOES SORT
 //{
 //  int metodo = 0;
-//  while(metodo < 1 || metodo > 8)
+//  while(metodo < 1 || metodo > 11)
 //  {
-////    metodo = menu();
-//    metodo = 8;
+//    metodo = menu();
+////    metodo = 10;
 //    switch(metodo){
 //      case(1):
 //        cout << "Metodo Escolhido: BubbleSort." << endl << endl;
@@ -67,6 +66,14 @@ int main()
 //        cout << "Metodo Escolhido: HeapSort." << endl << endl;
 //        VecOp::heapSort(vetor);
 //        break;
+//      case(10):
+//        cout << "Metodo Escolhido: CountingSort." << endl << endl;
+//        VecOp::countingSort(vetor, vetor, 1000);
+//        break;
+//      case(11):
+//        cout << "Metodo Escolhido: RadixSort." << endl << endl;
+//        VecOp::radixSort(vetor, 10);
+//        break;
 //      default:
 //        cout << "Escolha inválida, favor escolher um número válido." << endl << endl;
 //        break;
@@ -87,7 +94,7 @@ int main()
 //  VecOp::maximumSubarrayLT(vetor);
 //}
 
-///// Testing Priority Queue and MinHeaps
+///// TESTE DE PRIORITY QUEUES AND MINHEAPS
 //  Heap* heap = new Heap(vetor);
 //  heap->buildMinHeap();
 //  heap->imprime();
@@ -101,6 +108,12 @@ int main()
 //  cout << "Extraindo quarto elemento: " << heap->extractFirst() << endl;
 //  heap->imprime();
 
+///TESTE DA K MENOR ELEMENTO DO ARRAY
+  int k = VecOp::kthElement(vetor, 0);
+  cout << "9: " << k << endl;
+  VecOp::bubbleSort(vetor2);
+  VecOp::imprime(vetor2);
+
 
   return 0;
 }
@@ -108,15 +121,17 @@ int main()
 int menu()
 {
   cout << "Escolha um dos métodos abaixo para perfazer a ordenação:" << endl;
-  cout << "1: BubbleSort;" << endl;
-  cout << "2: InsertionSort;" << endl;
-  cout << "3: (Non Increasing)InsertionSort;" << endl;
-  cout << "4: BinaryInserionSort;" << endl;
-  cout << "5: SelectionSort;" << endl;
-  cout << "6: MergeSort (também dá o número de inversões);" << endl;
-  cout << "7: QuickSort;" << endl;
-  cout << "8: TailQuickSort;" << endl;
-  cout << "9: HeapSort." << endl;
+  cout << "1:  BubbleSort;" << endl;
+  cout << "2:  InsertionSort;" << endl;
+  cout << "3:  (Non Increasing)InsertionSort;" << endl;
+  cout << "4:  BinaryInserionSort;" << endl;
+  cout << "5:  SelectionSort;" << endl;
+  cout << "6:  MergeSort (também dá o número de inversões);" << endl;
+  cout << "7:  QuickSort;" << endl;
+  cout << "8:  TailQuickSort;" << endl;
+  cout << "9:  HeapSort;" << endl;
+  cout << "10: CountingSort;" << endl;
+  cout << "11: RadixSort, with CountingSort as a subroutine." << endl;
   cout << endl << "Escolha: ";
   int escolha;
   cin >> escolha;
